@@ -1,11 +1,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/wobbbler/my-i3wm-config/main/rice.png" alt="My i3 Desktop" width="800">
 </div>
-```markdown
-
-
-
-# 🖥️ My i3WM Configuration
+🖥️ My i3WM Configuration
 
 ![i3wm](https://img.shields.io/badge/i3wm-Config-blueviolet?style=for-the-badge&logo=i3)
 ![Linux](https://img.shields.io/badge/Linux-WM-1793D1?style=for-the-badge&logo=linux)
