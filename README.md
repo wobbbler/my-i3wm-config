@@ -54,7 +54,7 @@ git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 mkdir -p ~/.config/{i3,polybar,picom,alacritty,fastfetch,rofi,dunst}
 ```
 
-2. **Add i3 config (~/.config/i3/config):**
+2. **Add on top i3 config (~/.config/i3/config):**
 ```bash
 # CUSTOM ###################################
 
