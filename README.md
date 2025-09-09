@@ -1,6 +1,9 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/wobbbler/my-i3wm-config/main/rice.png" alt="My i3 Desktop" width="800">
+</div>
 ```markdown
 
-![rice](rice.png)
+
 
 # 🖥️ My i3WM Configuration
 
@@ -20,8 +23,8 @@
 
 ## 📦 Included Utilities
 
-| Utility | Purpose | Status |
-|---------|------------|--------|
+| Utility | Purpose |
+|---------|------------|
 | **i3lock** | Screen locker |
 | **Flameshot** | Screenshots |
 | **Picom** | Compositor with effects |
@@ -562,7 +565,4 @@ Main colors (Nord theme):
 
 MIT License - free use and modification
 
----
-
 ⭐ **If you liked this config, give it a star on GitHub!**
-```
