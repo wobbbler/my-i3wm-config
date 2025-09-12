@@ -1,0 +1,225 @@
+#   ╔═══════════════════════════════════════════╗
+#   ║                  i3 config                ║
+#   ╚═══════════════════════════════════════════╝
+#
+#   ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
+#  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
+#  ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+#  ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+#  ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+#   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
+# It will not be overwritten, so edit it as you like.
+
+# Font for window titles (JetBrains Mono Bold, size 11)
+font pango:JetBrains Mono Bold 11
+
+# Modifier key (Alt instead of Super/Windows)
+set $mod Mod1
+
+# Inner gaps between windows (i3-gaps)
+gaps inner 15
+
+# Outer gaps from screen edges (i3-gaps)
+gaps outer 15
+
+# Window border width (5 pixels for all windows)
+for_window [class=".*"] border pixel 5
+
+# Modifier for dragging floating windows (hold Alt)
+floating_modifier $mod
+
+# Drag tiling windows by titlebar or with modifier
+tiling_drag modifier titlebar
+
+# Workspace names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# ============ AUTOSTART APPLICATIONS ============
+
+# Restore desktop wallpapers
+exec --no-startup-id nitrogen --restore
+
+# Keyboard layout setup (US/RU toggle with Alt+Space)
+exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_space_toggle
+
+# Autostart .desktop files (XDG standard)
+exec --no-startup-id dex --autostart --environment i3
+
+# NetworkManager system tray icon
+exec --no-startup-id nm-applet
+
+# Compositor for shadows, transparency and effects
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf --daemon
+
+# Launch Polybar (status panel)
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# ============ VOLUME CONTROL ============
+
+# Command to refresh i3status
+set $refresh_i3status killall -SIGUSR1 i3status
+
+# Increase volume (Volume Up key)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+
+# Decrease volume (Volume Down key)
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
+# Toggle mute (Mute key)
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+# Toggle microphone mute (Mic Mute key)
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+#   ┌─────────────────────────────────────────────────────────────┐
+#   │                    KEYBINDINGS                              │
+#   └─────────────────────────────────────────────────────────────┘
+#   
+#   ╭─────────────────────────────────────────────────────────────╮
+#   │  BASIC WINDOW MANAGEMENT                                    │
+#   ╰─────────────────────────────────────────────────────────────╯
+
+# Open terminal (Alt + Enter)
+bindsym $mod+Return exec alacritty
+
+# Close focused window (Alt + Shift + Q)
+bindsym $mod+Shift+q kill
+
+# Launch Rofi application menu (Alt + D)
+bindsym $mod+d exec rofi -show drun
+
+# Open Ranger file manager (Alt + Shift + F)
+bindsym $mod+Shift+f exec --no-startup-id kitty -e ranger
+
+# Take screenshot (Print Screen key)
+bindsym Print exec --no-startup-id flameshot gui
+
+# Lock screen (Alt + Shift + X)
+bindsym $mod+Shift+x exec ~/.config/i3/lock.sh
+
+# Reload i3 configuration (Alt + Shift + C)
+bindsym $mod+Shift+c reload
+
+# Restart i3 (preserving session) (Alt + Shift + R)
+bindsym $mod+Shift+r restart
+
+#   ╭─────────────────────────────────────────────────────────────╮
+#   │  WINDOW FOCUS AND MOVEMENT                                  │
+#   ╰─────────────────────────────────────────────────────────────╯
+
+# Window focus (Vim-style keys)
+bindsym $mod+j focus left        # Alt + J - focus left
+bindsym $mod+k focus down        # Alt + K - focus down
+bindsym $mod+l focus up          # Alt + L - focus up
+bindsym $mod+semicolon focus right # Alt + ; - focus right
+
+# Window focus (arrow keys)
+bindsym $mod+Left focus left     # Alt + ← - focus left
+bindsym $mod+Down focus down     # Alt + ↓ - focus down
+bindsym $mod+Up focus up         # Alt + ↑ - focus up
+bindsym $mod+Right focus right   # Alt + → - focus right
+
+# Window movement (Vim-style keys)
+bindsym $mod+Shift+j move left        # Alt + Shift + J - move left
+bindsym $mod+Shift+k move down        # Alt + Shift + K - move down
+bindsym $mod+Shift+l move up          # Alt + Shift + L - move up
+bindsym $mod+Shift+semicolon move right # Alt + Shift + ; - move right
+
+# Window movement (arrow keys)
+bindsym $mod+Shift+Left move left    # Alt + Shift + ← - move left
+bindsym $mod+Shift+Down move down    # Alt + Shift + ↓ - move down
+bindsym $mod+Shift+Up move up        # Alt + Shift + ↑ - move up
+bindsym $mod+Shift+Right move right  # Alt + Shift + → - move right
+
+#   ╭─────────────────────────────────────────────────────────────╮
+#   │  LAYOUT AND SPLITTING                                       │
+#   ╰─────────────────────────────────────────────────────────────╯
+
+# Horizontal split (Alt + H)
+bindsym $mod+h split h
+
+# Vertical split (Alt + V)
+bindsym $mod+v split v
+
+# Stacking layout (windows above each other) (Alt + S)
+bindsym $mod+s layout stacking
+
+# Tabbed layout (windows as tabs) (Alt + W)
+bindsym $mod+w layout tabbed
+
+# Toggle split orientation (Alt + E)
+bindsym $mod+e layout toggle split
+
+# Fullscreen mode (Alt + F)
+bindsym $mod+f fullscreen toggle
+
+# Toggle floating/tiling mode (Alt + Shift + Space)
+bindsym $mod+Shift+space floating toggle
+
+# Toggle focus between tiling and floating windows (Alt + Space)
+bindsym $mod+space focus mode_toggle
+
+# Focus parent container (Alt + A)
+bindsym $mod+a focus parent
+
+# Enter resize mode (Alt + R)
+bindsym $mod+r mode "resize"
+
+#   ╭─────────────────────────────────────────────────────────────╮
+#   │  WORKSPACES                                                 │
+#   ╰─────────────────────────────────────────────────────────────╯
+
+# Switch to workspaces 1-10 (Alt + 1-0)
+bindsym $mod+1 workspace number $ws1   # Workspace 1
+bindsym $mod+2 workspace number $ws2   # Workspace 2
+bindsym $mod+3 workspace number $ws3   # Workspace 3
+bindsym $mod+4 workspace number $ws4   # Workspace 4
+bindsym $mod+5 workspace number $ws5   # Workspace 5
+bindsym $mod+6 workspace number $ws6   # Workspace 6
+bindsym $mod+7 workspace number $ws7   # Workspace 7
+bindsym $mod+8 workspace number $ws8   # Workspace 8
+bindsym $mod+9 workspace number $ws9   # Workspace 9
+bindsym $mod+0 workspace number $ws10  # Workspace 10
+
+# Move windows to workspaces 1-10 (Alt + Shift + 1-0)
+bindsym $mod+Shift+1 move container to workspace number $ws1   # To workspace 1
+bindsym $mod+Shift+2 move container to workspace number $ws2   # To workspace 2
+bindsym $mod+Shift+3 move container to workspace number $ws3   # To workspace 3
+bindsym $mod+Shift+4 move container to workspace number $ws4   # To workspace 4
+bindsym $mod+Shift+5 move container to workspace number $ws5   # To workspace 5
+bindsym $mod+Shift+6 move container to workspace number $ws6   # To workspace 6
+bindsym $mod+Shift+7 move container to workspace number $ws7   # To workspace 7
+bindsym $mod+Shift+8 move container to workspace number $ws8   # To workspace 8
+bindsym $mod+Shift+9 move container to workspace number $ws9   # To workspace 9
+bindsym $mod+Shift+0 move container to workspace number $ws10  # To workspace 10
+
+# ============ RESIZE MODE ============
+mode "resize" {
+    # Resize window (Vim-style keys)
+    bindsym j resize shrink width 1 px or 1 ppt    # Shrink width
+    bindsym k resize grow height 1 px or 1 ppt     # Grow height
+    bindsym l resize shrink height 1 px or 1 ppt   # Shrink height
+    bindsym semicolon resize grow width 1 px or 1 ppt # Grow width
+    
+    # Resize window (arrow keys)
+    bindsym Left resize shrink width 1 px or 1 ppt   # ← Shrink width
+    bindsym Down resize grow height 1 px or 1 ppt    # ↓ Grow height
+    bindsym Up resize shrink height 1 px or 1 ppt    # ↑ Shrink height
+    bindsym Right resize grow width 1 px or 1 ppt    # → Grow width
+    
+    # Exit resize mode
+    bindsym Return mode "default"    # Enter - exit
+    bindsym Escape mode "default"    # Escape - exit
+    bindsym $mod+r mode "default"    # Alt + R - exit
+}
+
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
