@@ -147,9 +147,6 @@ nvim
 ```bash
 # Change rofi themes
 rofi-theme-selector
-
-# Manual theme application
-rofi -show drun -theme theme-name
 ```
 
 ---
