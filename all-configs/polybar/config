@@ -1,0 +1,221 @@
+[colors]
+background = #2E3440
+background-alt = #434C5E
+foreground = #D8DEE9
+primary = #88C0D0
+secondary = #f29c00
+alert = #BF616A
+blue = #81A1C1
+green = #A3BE8C
+
+[bar/mybar]
+width = 100%
+height = 27
+offset-x = 0
+offset-y = 0
+radius = 0  
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "JetBrains Mono Nerd Font:size=12;3"
+font-1 = "Font Awesome 6 Free:style=Solid:size=12;3"
+font-2 = "Font Awesome 6 Brands:size=12;3"
+font-3 = "Nerd Font:size=12;3"
+font-4 = "Symbols Nerd Font:size=12;3"
+
+modules-left = i3 xwindow 
+modules-center = date
+#network
+modules-right = xkeyboard media pulseaudio battery
+
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.background}
+
+wm-restack = i3
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-focused =  %name%
+label-focused-background = ${colors.background-alt}
+label-focused-foreground = ${colors.primary}
+label-focused-padding = 2
+
+label-unfocused =  %name%
+label-unfocused-padding = 2
+label-unfocused-foreground = ${colors.foreground}
+
+label-visible =  %name%
+label-visible-background = ${colors.background-alt}
+label-visible-padding = 2
+label-visible-foreground = ${colors.green}
+
+label-urgent =  %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+label-urgent-foreground = #000
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+label-foreground = ${colors.blue}
+label-font = 1
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %Y-%m-%d
+time = %H:%M:%S
+
+label =  %date%  %time%
+label-font = 1
+label-foreground = ${colors.secondary}
+
+[module/media]
+type = custom/script
+interval = 2
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.green}
+
+exec = playerctl metadata --format "{{ artist }} - {{ title }}" 2>/dev/null || echo "No media"
+exec-if = playerctl status 2>/dev/null
+
+click-left = playerctl play-pause
+click-middle = playerctl stop
+click-right = playerctl next
+
+tail = true
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${colors.primary}
+
+format-muted =  muted
+format-muted-foreground = #666
+
+bar-volume-width = 8
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #f5a70a
+bar-volume-foreground-4 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground}
+
+click-left = pavucontrol &
+click-right = pactl set-sink-mute @DEFAULT_SINK@ toggle
+scroll-up = pactl set-sink-volume @DEFAULT_SINK@ +5%
+scroll-down = pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+
+[module/brightness]
+type = custom/script
+interval = 0.2
+exec = ~/.config/polybar/backlight.sh
+
+scroll-up = exec light -A 5
+scroll-down = exec light -U 5
+
+format-prefix = " "
+
+label = %output%
+label-foreground = ${colors.fg}
+format-padding = 1
+
+[module/network]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = ⚠ Disconnected
+format-disconnected-foreground = ${colors.alert}
+
+label-connected = %essid% %local_ip%
+label-connected-foreground = ${colors.primary}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.green}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = "    "
+format-prefix-foreground = ${colors.primary}
+format-prefix-font = 2
+
+label-layout = %layout%
+label-layout-foreground = ${colors.foreground}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-framerate = 750
+
+[settings]
+screenchange-reload = true
+throttle-output = 5
+throttle-output-for = 10
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
