@@ -117,29 +117,28 @@ bindsym $mod+Shift+r restart
 #   ╰─────────────────────────────────────────────────────────────╯
 
 # Window focus (Vim-style keys)
-bindsym $mod+j focus left        # Alt + J - focus left
-bindsym $mod+k focus down        # Alt + K - focus down
-bindsym $mod+l focus up          # Alt + L - focus up
-bindsym $mod+semicolon focus right # Alt + ; - focus right
+bindsym $mod+j focus left        
+bindsym $mod+k focus down        
+bindsym $mod+l focus up          
+bindsym $mod+semicolon focus right 
 
 # Window focus (arrow keys)
-bindsym $mod+Left focus left     # Alt + ← - focus left
-bindsym $mod+Down focus down     # Alt + ↓ - focus down
-bindsym $mod+Up focus up         # Alt + ↑ - focus up
-bindsym $mod+Right focus right   # Alt + → - focus right
+bindsym $mod+Left focus left     
+bindsym $mod+Down focus down    
+bindsym $mod+Up focus up        
+bindsym $mod+Right focus right  
 
 # Window movement (Vim-style keys)
-bindsym $mod+Shift+j move left        # Alt + Shift + J - move left
-bindsym $mod+Shift+k move down        # Alt + Shift + K - move down
-bindsym $mod+Shift+l move up          # Alt + Shift + L - move up
-bindsym $mod+Shift+semicolon move right # Alt + Shift + ; - move right
+bindsym $mod+Shift+j move left        
+bindsym $mod+Shift+k move down       
+bindsym $mod+Shift+l move up         
+bindsym $mod+Shift+semicolon move right 
 
 # Window movement (arrow keys)
-bindsym $mod+Shift+Left move left    # Alt + Shift + ← - move left
-bindsym $mod+Shift+Down move down    # Alt + Shift + ↓ - move down
-bindsym $mod+Shift+Up move up        # Alt + Shift + ↑ - move up
-bindsym $mod+Shift+Right move right  # Alt + Shift + → - move right
-
+bindsym $mod+Shift+Left move left   
+bindsym $mod+Shift+Down move down   
+bindsym $mod+Shift+Up move up      
+bindsym $mod+Shift+Right move right 
 #   ╭─────────────────────────────────────────────────────────────╮
 #   │  LAYOUT AND SPLITTING                                       │
 #   ╰─────────────────────────────────────────────────────────────╯
@@ -205,21 +204,21 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # ============ RESIZE MODE ============
 mode "resize" {
     # Resize window (Vim-style keys)
-    bindsym j resize shrink width 1 px or 1 ppt    # Shrink width
-    bindsym k resize grow height 1 px or 1 ppt     # Grow height
-    bindsym l resize shrink height 1 px or 1 ppt   # Shrink height
-    bindsym semicolon resize grow width 1 px or 1 ppt # Grow width
+    bindsym j resize shrink width 1 px or 1 ppt   
+    bindsym k resize grow height 1 px or 1 ppt    
+    bindsym l resize shrink height 1 px or 1 ppt  
+    bindsym semicolon resize grow width 1 px or 1 ppt 
 
     # Resize window (arrow keys)
-    bindsym Left resize shrink width 1 px or 1 ppt   # ← Shrink width
-    bindsym Down resize grow height 1 px or 1 ppt    # ↓ Grow height
-    bindsym Up resize shrink height 1 px or 1 ppt    # ↑ Shrink height
-    bindsym Right resize grow width 1 px or 1 ppt    # → Grow width
+    bindsym Left resize shrink width 1 px or 1 ppt   
+    bindsym Down resize grow height 1 px or 1 ppt   
+    bindsym Up resize shrink height 1 px or 1 ppt   
+    bindsym Right resize grow width 1 px or 1 ppt   
 
     # Exit resize mode
-    bindsym Return mode "default"    # Enter - exit
-    bindsym Escape mode "default"    # Escape - exit
-    bindsym $mod+r mode "default"    # Alt + R - exit
+    bindsym Return mode "default"  
+    bindsym Escape mode "default"  
+    bindsym $mod+r mode "default"   
 }
 
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
